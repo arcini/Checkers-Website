@@ -145,6 +145,8 @@ function init() {
 
 
 
+var pawn = new Image();
+pawn.src = "chessPieces.png"
 
 
 
@@ -247,3 +249,5 @@ function init() {
 
 
 }
+
+var sprite = getElementById("sprite");
