@@ -1,27 +1,49 @@
 window.addEventListener("load", init);
-
-function init() {
-  class Piece {
-    constructor(type, player, meta=undefined) {
-      this.type = type;
-      this.player = player;
-      this.meta = meta;
-    }
-    getMoveSquares(board) {
-      if (this.type == ) {
-
+class Piece {
+  constructor(x, y, type, player, meta=undefined) {
+    this.x = x;
+    this.y = y;
+    this.type = type;
+    this.player = player;
+    this.meta = meta;
+  }
+  getMoveSquares(board) {
+    let move = [];
+    let capture = [];
+    let special = [];
+    if (this.type == 'pawn') {
+      if (this.player == 1) {
+        if (board[this.x, this.y - 1].type == 'none') {
+          if (this.y > 1)
+          {
+            special.push([this.x, this.y]); //promote
+          }
+          move.push([this.x, this.y - 1]); //single move
+          if (this.y == 6 && board[this.x, this.y - 2].type == 'none') {
+            move.push([this.x, this.y - 2]); //double move
+          }
+        }
+        if (board[this.x + 1, this.y - 1].type != 'none' && x < 7) {
+          capture.push([this.x + 1, this.y - 1]); //capture right
+        }
+        if (board[this.x - 1, this.y - 1].type != 'none' && x > 0) {
+          capture.push([this.x - 1, this.y - 1]); //capture left
+        }
       }
     }
+    return [move, capture, special];
   }
-  boardElement = document.getElementsByClassName('divTableCell');
-  boardElArray = [];
-  pieceArray = [];
+}
+function init() {
+  var boardElement = document.getElementsByClassName('divTableCell');
+  var boardElArray = [];
+  var pieceArray = [];
   for (let x = 0; x < 8; x++) {
     boardArray.push([]);
     pieceArray.push([]);
     for (let y = 0; y < 8; y++) {
       boardElArray[x].push(boardElement[x*8+y]);
-      pieceArray.push(new Piece)
+      pieceArray.push(new Piece(x, y, 'none', undefined))
       if ((x + y) % 2 == 1) {
         boardElArray[x][y].style.backgroundColor = "black";
       }
