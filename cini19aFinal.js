@@ -16,7 +16,7 @@ class Piece {
         if (board[this.x, this.y - 1].type == 'none') {
           if (this.y > 1)
           {
-            special.push([this.x, this.y]); //promote
+            special.push([this.x, this.y, 'promote']); //promote
           }
           move.push([this.x, this.y - 1]); //single move
           if (this.y == 6 && board[this.x, this.y - 2].type == 'none') {
@@ -27,6 +27,17 @@ class Piece {
           capture.push([this.x + 1, this.y - 1]); //capture right
         }
         if (board[this.x - 1, this.y - 1].type != 'none' && x > 0) {
+          capture.push([this.x - 1, this.y - 1]); //capture left
+        }
+        if (board[this.x + 1, this.y].type == 'pawn' && x < 7
+          && board[this.x + 1, this.y].meta.contains('enpassant')) {
+          special.push([this.x + 1, this.y - 1, 'enpassant']); //en passant right
+        }
+        if (board[this.x - 1, this.y].type == 'pawn' && x < 0
+          && board[this.x - 1, this.y].meta.contains('enpassant')) {
+          special.push([this.x - 1, this.y - 1, 'enpassant']); //en passant left
+        }
+        if (board[this.x - 1, this.y].type != 'pawn' && x > 0) {
           capture.push([this.x - 1, this.y - 1]); //capture left
         }
       }
