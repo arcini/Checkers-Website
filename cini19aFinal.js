@@ -120,8 +120,16 @@ function init() {
 
 
 
+for (i = 0; i < boardElArray.length; i++) {
+  let d = document.getElementById(boareElArray[i]);
+  d.addEventListener("click", function(e) {
+    clickedSquare(i);
+  });
+}
 
-
+function clickedSquare(squareNum) {
+  document.getElementById(boareElArray[squareNum]).style.backgroundColor = "green";
+}
 
 var pawn = new Image();
 pawn.src = "chessPieces.png"
