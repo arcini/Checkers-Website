@@ -39,11 +39,11 @@ function init() {
   var boardElArray = [];
   var pieceArray = [];
   for (let x = 0; x < 8; x++) {
-    boardArray.push([]);
+    pieceArray.push([]);
     pieceArray.push([]);
     for (let y = 0; y < 8; y++) {
       boardElArray[x].push(boardElement[x*8+y]);
-      pieceArray.push(new Piece(x, y, 'none', undefined))
+      pieceArray[x].push(new Piece(x, y, 'none', undefined))
       if ((x + y) % 2 == 1) {
         boardElArray[x][y].style.backgroundColor = "black";
       }
