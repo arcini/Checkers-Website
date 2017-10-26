@@ -153,15 +153,15 @@ function init() {
 
 
 
-for (i = 0; i < boardElArray.length; i++) {
-  let d = document.getElementById(boareElArray[i]);
+for (var i = 0; i < boardElArray.length; i++) {
+  let d = boardElArray[i];
   d.addEventListener("click", function(e) {
-    clickedSquare(i);
+    clickedSquare();
   });
 }
 
 function clickedSquare(squareNum) {
-  document.getElementById(boareElArray[squareNum]).style.backgroundColor = "green";
+  document.getElementById(boardElArray[squareNum]).style.backgroundColor = "green";
 }
 
 var pawn = new Image();
