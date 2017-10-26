@@ -1,0 +1,28 @@
+/* * {
+  border: 1px black solid;
+}*/
+
+p, h1, h2 {
+  text-align: center;
+  margin: 0.5em auto;
+}
+
+.divTable {
+  display: table;
+  margin: auto;
+}
+
+.divTableBody {
+
+}
+
+.divTableRow {
+  display: table-row;
+}
+
+.divTableCell {
+  display: table-cell;
+  height: 4em;
+  width: 4em;
+  border: solid 1px black;
+}
