@@ -10,6 +10,7 @@ p, h1, h2 {
 .divTable {
   display: table;
   margin: auto;
+  border: solid 1px black;
 }
 
 .divTableBody {
@@ -24,7 +25,6 @@ p, h1, h2 {
   display: table-cell;
   height: 4em;
   width: 4em;
-  border: solid 1px black;
 }
 
 #pieces {
