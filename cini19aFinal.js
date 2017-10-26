@@ -142,10 +142,10 @@ function init() {
 
 
 
-for (i = 0; i < boardElArray.length; i++) {
-  let d = document.getElementById(boardElArray[i]);
+for (var i = 0; i < boardElArray.length; i++) {
+  let d = boardElArray[i];
   d.addEventListener("click", function(e) {
-    clickedSquare(i);
+    clickedSquare();
   });
 }
 
