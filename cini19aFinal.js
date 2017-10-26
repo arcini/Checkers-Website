@@ -257,5 +257,3 @@ pawn.src = "chessPieces.png"
 
 
 }
-
-var sprite = getElementById("sprite");
