@@ -40,7 +40,7 @@ function init() {
   var pieceArray = [];
   for (let x = 0; x < 8; x++) {
     pieceArray.push([]);
-    pieceArray.push([]);
+    boardElArray.push([]);
     for (let y = 0; y < 8; y++) {
       boardElArray[x].push(boardElement[x*8+y]);
       pieceArray[x].push(new Piece(x, y, 'none', undefined))
