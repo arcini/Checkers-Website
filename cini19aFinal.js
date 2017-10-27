@@ -153,19 +153,22 @@ function init() {
 
 
 
-for (var i = 0; i < boardElArray.length; i++) {
-  let d = boardElArray[i];
-  d.addEventListener("click", function(e) {
-    clickedSquare();
-  });
+for (let x = 0; x < boardElArray.length; x++) {
+  for (let y = 0; y < boardElArray[x].length; y++) {
+    let d = boardElArray[x][y];
+    d.addEventListener("click", function(e) {
+      clickedSquare(x, y);
+    });
+  }
 }
 
-function clickedSquare(squareNum) {
-  document.getElementById(boardElArray[squareNum]).style.backgroundColor = "green";
+function clickedSquare(x, y) {
+  boardElArray[x][y].style.backgroundColor = "green";
 }
 
 var pawn = new Image();
 pawn.src = "chessPieces.png"
+
 
 
 
