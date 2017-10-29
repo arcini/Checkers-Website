@@ -60,6 +60,9 @@ function init() {
       }
       boardElArray[x][y].id = '(' + x + ',' + y + ')';
     }
+    console.log("piece array" + pieceArray);
+    console.log("boardElArray" + boardElArray);
+
   }
 
 
@@ -134,23 +137,7 @@ function init() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var isClicked = [false, NaN, NaN]; //index 0 tells whether a square is currently in the clicked state, indexes 1 and 2 give it's x and y position
 
 
 for (let x = 0; x < boardElArray.length; x++) {
@@ -163,11 +150,12 @@ for (let x = 0; x < boardElArray.length; x++) {
 }
 
 function clickedSquare(x, y) {
+  let squares = getMoveSquares(boardElArray); //[moved, capture, special]
+  boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = ;
   boardElArray[x][y].style.backgroundColor = "green";
+  var isClicked = [true, x, y]; //memory for the state of the clicked square
 }
 
-var pawn = new Image();
-pawn.src = "chessPieces.png"
 
 
 
