@@ -179,8 +179,13 @@ function init() {
 
 for (let x = 0; x < 8; x++) {
   for (let y = 0; y < 8; y++) {
-    if ((x + y)%2 == 1 && y < 3 && x < 3) {
-      
+    if ((x + y)%2 == 1 && x < 3) {
+      let yeet = document.createElement("img");
+      yeet.setAttribute("src", "redChecker.png");
+      yeet.style.width = "3.75em";
+      yeet.style.height = "3.75em";
+      boardElArray[x][y].appendChild(yeet);
+      console.log("added red checkers");
     }
   }
 }
@@ -245,7 +250,6 @@ var isClicked = [false, 1, 1]; //index 0 tells whether a square is currently in 
 var lastBGC;
 function clickedSquare(x, y) {
   //let squares = getMoveSquares(boardElArray); //[moved, capture, special]
-  console.log(isClicked);
   if (isClicked[0]) {
     boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = lastBGC;
   }
