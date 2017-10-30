@@ -1,6 +1,4 @@
-/* * {
-  border: 1px black solid;
-}*/
+
 
 p, h1, h2 {
   text-align: center;
@@ -19,14 +17,23 @@ p, h1, h2 {
 
 .divTableRow {
   display: table-row;
+  vertical-align: middle;
 }
 
 .divTableCell {
   display: table-cell;
   height: 4em;
   width: 4em;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
 }
 
 #pieces {
   display: none;
+}
+
+img {
+  margin: 0;
+  padding: 0;
 }

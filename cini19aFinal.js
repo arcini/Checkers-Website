@@ -182,14 +182,24 @@ for (let x = 0; x < 8; x++) {
     if ((x + y)%2 == 1 && x < 3) {
       let yeet = document.createElement("img");
       yeet.setAttribute("src", "redChecker.png");
-      yeet.style.width = "3.75em";
-      yeet.style.height = "3.75em";
+      yeet.style.width = "80%";
+      yeet.style.height = "80%";
       boardElArray[x][y].appendChild(yeet);
-      console.log("added red checkers");
     }
   }
 }
 
+for (let x = 0; x < 8; x++) {
+  for (let y = 0; y < 8; y++) {
+    if ((x + y)%2 == 1 && x >= 5) {
+      let yeet = document.createElement("img");
+      yeet.setAttribute("src", "blueChecker.png");
+      yeet.style.width = "80%";
+      yeet.style.height = "80%";
+      boardElArray[x][y].appendChild(yeet);
+    }
+  }
+}
 
 
 
