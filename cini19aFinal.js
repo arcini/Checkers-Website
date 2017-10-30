@@ -186,19 +186,15 @@ for (let x = 0; x < 8; x++) {
       yeet.style.height = "80%";
       boardElArray[x][y].appendChild(yeet);
       pieceArray[x][y] = new Piece(x, y, 'normal', 1);
-    }
-  }
-}
-
-for (let x = 0; x < 8; x++) {
-  for (let y = 0; y < 8; y++) {
-    if ((x + y)%2 == 1 && x >= 5) {
+    } else if ((x + y)%2 == 1 && x >= 5) {
       let yeet = document.createElement("img");
       yeet.setAttribute("src", "blueChecker.png");
       yeet.style.width = "80%";
       yeet.style.height = "80%";
       boardElArray[x][y].appendChild(yeet);
       pieceArray[x][y] = new Piece(x, y, 'normal', 2);
+    } else {
+      pieceArray[x][y] = new Piece(x, y, 'none', 0);
     }
   }
 }
