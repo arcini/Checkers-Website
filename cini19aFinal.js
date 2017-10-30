@@ -10,37 +10,8 @@ class Piece {
   getMoveSquares(board) {
     let move = [];
     let capture = [];
-    let special = [];
-    if (this.type == 'pawn') {
-      if (this.player == 1) {
-        if (board[this.x, this.y - 1].type == 'none') {
-          if (this.y > 1)
-          {
-            special.push([this.x, this.y, 'promote']); //promote
-          }
-          move.push([this.x, this.y - 1]); //single move
-          if (this.y == 6 && board[this.x, this.y - 2].type == 'none') {
-            move.push([this.x, this.y - 2]); //double move
-          }
-        }
-        if (board[this.x + 1, this.y - 1].type != 'none' && x < 7) {
-          capture.push([this.x + 1, this.y - 1]); //capture right
-        }
-        if (board[this.x - 1, this.y - 1].type != 'none' && x > 0) {
-          capture.push([this.x - 1, this.y - 1]); //capture left
-        }
-        if (board[this.x + 1, this.y].type == 'pawn' && x < 7
-          && board[this.x + 1, this.y].meta.contains('enpassant')) {
-          special.push([this.x + 1, this.y - 1, 'enpassant']); //en passant right
-        }
-        if (board[this.x - 1, this.y].type == 'pawn' && x < 0
-          && board[this.x - 1, this.y].meta.contains('enpassant')) {
-          special.push([this.x - 1, this.y - 1, 'enpassant']); //en passant left
-        }
-        if (board[this.x - 1, this.y].type != 'pawn' && x > 0) {
-          capture.push([this.x - 1, this.y - 1]); //capture left
-        }
-      }
+    if (this.player == 1 || this.type == 'king') {
+      if ()
     }
     return [move, capture, special];
   }
@@ -60,9 +31,6 @@ function init() {
       }
       boardElArray[x][y].id = '(' + x + ',' + y + ')';
     }
-    console.log("piece array" + pieceArray);
-    console.log("boardElArray" + boardElArray);
-
   }
 
 
@@ -137,7 +105,23 @@ function init() {
 
 
 
-var isClicked = [false, NaN, NaN]; //index 0 tells whether a square is currently in the clicked state, indexes 1 and 2 give it's x and y position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 for (let x = 0; x < boardElArray.length; x++) {
@@ -150,12 +134,11 @@ for (let x = 0; x < boardElArray.length; x++) {
 }
 
 function clickedSquare(x, y) {
-  let squares = getMoveSquares(boardElArray); //[moved, capture, special]
-  boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = ;
   boardElArray[x][y].style.backgroundColor = "green";
-  var isClicked = [true, x, y]; //memory for the state of the clicked square
 }
 
+var pawn = new Image();
+pawn.src = "chessPieces.png"
 
 
 
