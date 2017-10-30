@@ -180,7 +180,7 @@ function init() {
 for (let x = 0; x < 8; x++) {
   for (let y = 0; y < 8; y++) {
     if ((x + y)%2 == 1 && y < 3 && x < 3) {
-      
+
     }
   }
 }
