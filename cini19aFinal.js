@@ -200,23 +200,20 @@ function init() {
 function render() {
   for (let x = 0; x < 8; x++) {
     for (let y = 0; y < 8; y++) {
-      if ((x + y)%2 == 1 && x < 3) {
+      while (boardElArray[x][y].hasChildNodes()) {
+        boardElArray[x][y].removeChild(boardElArray[x][y].lastChild);
+      }
+      if (pieceArray[x][y].player == 1) {
         let yeet = document.createElement("img");
         yeet.setAttribute("src", "redChecker.png");
         yeet.style.width = "80%";
         yeet.style.height = "80%";
-        while (boardElArray[x][y].hasChildNodes()) {
-          boardElArray[x][y].removeChild(boardElArray[x][y].lastChild);
-        }
         boardElArray[x][y].appendChild(yeet);
-      } else if ((x + y)%2 == 1 && x >= 5) {
+      } else if (pieceArray[x][y].player == 2) {
         let yeet = document.createElement("img");
         yeet.setAttribute("src", "blueChecker.png");
         yeet.style.width = "80%";
         yeet.style.height = "80%";
-        while (boardElArray[x][y].hasChildNodes()) {
-          boardElArray[x][y].removeChild(boardElArray[x][y].lastChild);
-        }
         boardElArray[x][y].appendChild(yeet);
       }
     }
@@ -280,45 +277,51 @@ render();
 var isPlayer = 1;
 var isClicked = [false, 1, 1]; //index 0 tells whether a square is currently in the clicked state, indexes 1 and 2 give it's x and y position
 var lastBGC;
-function clickedSquare(x, y) {
-  for (let x = 0; x < 8; x++) {
-    for (let y = 0; y < 8; y++) {
-      if ((x + y) % 2 == 1) {
-        boardElArray[x][y].style.backgroundColor = "black";
-      }
-    }
-  }
-  if (pieceArray[x][y].player == isPlayer) {
-    if (isClicked[0]) {
-      boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = lastBGC;
-    }
-    let moveArray = pieceArray[x][y].getMoveSquares(pieceArray)[0];
-    for (i = 0; i < moveArray.length; i++) {
-      boardElArray[moveArray[i][0]][moveArray[i][1]].style.backgroundColor = "yellow";
-      boardElArray[moveArray[i][0]][moveArray[i][1]].removeEventListener("click", function(e){
-        clickedSquare(x, y);
-      });
-      boardElArray[moveArray[i][0]][moveArray[i][1]].addEventListener("click", function(e) {
-        pieceArray = makeMove(x, y, moveArray[i-1][0], moveArray[i-1][1], 'move', pieceArray);
-        isPlayer = 3 - isPlayer;
-        render();
-      });
-    }
-    lastBGC = boardElArray[x][y].style.backgroundColor;
-    boardElArray[x][y].style.backgroundColor = "green";
-    isClicked = [true, x, y]; //memory for the state of the clicked square
-  }
-}
+
 for (let x = 0; x < boardElArray.length; x++) {
   for (let y = 0; y < boardElArray[x].length; y++) {
     let d = boardElArray[x][y];
-    function tempFunc() {
+
+    d.addEventListener("click", function tempFunc() {
       clickedSquare(x,y);
-    }
-    d.addEventListener("click", tempFunc);
+    });
   }
 }
-
+function clickedSquare(x, y) {
+  for (let x1 = 0; x1 < 8; x1++) {
+    for (let y1 = 0; y1 < 8; y1++) {
+      if ((x1 + y1) % 2 == 1 && x1 != x && y1 != y) {
+        boardElArray[x1][y1].style.backgroundColor = "black";
+      }
+    }
+  }
+  if (pieceArray[x][y].player != undefined) {
+    if (pieceArray[x][y].player == isPlayer) {
+      if (isClicked[0]) {
+        boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = lastBGC;
+      }
+      let moveArray = pieceArray[x][y].getMoveSquares(pieceArray)[0];
+      for (i = 0; i < moveArray.length; i++) {
+        boardElArray[moveArray[i][0]][moveArray[i][1]].style.backgroundColor = "yellow";
+      }
+      lastBGC = boardElArray[x][y].style.backgroundColor;
+      boardElArray[x][y].style.backgroundColor = "green";
+      isClicked = [true, x, y]; //memory for the state of the clicked square
+    }
+  } else if (boardElArray[x][y].style.backgroundColor == 'yellow') {
+    pieceArray = makeMove(isClicked[1], isClicked[2], x, y, 'move', pieceArray);
+    isPlayer = 3 - isPlayer;
+    render();
+    for (let x1 = 0; x1 < 8; x1++) {
+      for (let y1 = 0; y1 < 8; y1++) {
+        if ((x1 + y1) % 2 == 1) {
+          boardElArray[x1][y1].style.backgroundColor = "black";
+        }
+      }
+    }
+  }
+}
+console.log('a');
 
 
 
