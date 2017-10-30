@@ -79,6 +79,9 @@ function makeMove(x1, y1, x2, y2, type, board) {
     let y3 = (y1+y2)/2;
     boardC[x3][y3] = new Piece(x3, y3, 'none', undefined);
   }
+  if (x2 == 0 or x2 == 7) {
+    boardC[x2][y2].type = 'king';
+  }
   return boardC;
 }
 function init() {
