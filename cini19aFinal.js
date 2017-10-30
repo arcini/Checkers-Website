@@ -18,35 +18,57 @@ class Piece {
       } else if (board[this.x - 1][this.y - 1].player == 3-this.player
                  && board[this.x - 2][this.y - 2].type == 'none') {
         capture.push([this.x - 2, this.y - 2]);
-        nextCapture = this.hypothetical(this.x - 2, this.y - 2).getMoveSquares(board);
-        //STOPPED HERE
+        nextCapture = this.hypothetical(this.x - 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y - 2, 'capture', board))[1];
+        for (let i = 0; i < nextCapture.length; i++) {
+          capture.push([this.x - 2, this.y - 2].concat(nextCapture[i]));
+        }
       }
       if (board[this.x - 1][this.y + 1].type == 'none') {
         move.push([this.x - 1, this.y + 1]);
       } else if (board[this.x - 1][this.y + 1].player == 3-this.player
                  && board[this.x - 2][this.y + 2].type == 'none') {
         capture.push([this.x - 2, this.y + 2]);
+        nextCapture = this.hypothetical(this.x - 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y + 2, 'capture', board))[1];
+        for (let i = 0; i < nextCapture.length; i++) {
+          capture.push([this.x - 2, this.y + 2].concat(nextCapture[i]));
+        }
       }
     }
     if (this.player == 1 || this.type == 'king') {
-      if (board[this.x - 1][this.y - 1].type == 'none') {
-        move.push([this.x - 1, this.y - 1]);
-      } else if (board[this.x - 1][this.y - 1].player == 3-this.player
-                 && board[this.x - 2][this.y - 2].type == 'none') {
-        capture.push([this.x - 2, this.y - 2]);
+      if (board[this.x + 1][this.y - 1].type == 'none') {
+        move.push([this.x + 1, this.y - 1]);
+      } else if (board[this.x + 1][this.y - 1].player == 3-this.player
+                 && board[this.x + 2][this.y - 2].type == 'none') {
+        capture.push([this.x + 2, this.y - 2]);
+        nextCapture = this.hypothetical(this.x + 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y - 2, 'capture', board))[1];
+        for (let i = 0; i < nextCapture.length; i++) {
+          capture.push([this.x + 2, this.y - 2].concat(nextCapture[i]));
+        }
       }
-      if (board[this.x - 1][this.y + 1].type == 'none') {
-        move.push([this.x - 1, this.y + 1]);
-      } else if (board[this.x - 1][this.y + 1].player == 3-this.player
-                 && board[this.x - 2][this.y + 2].type == 'none') {
-        capture.push([this.x - 2, this.y + 2]);
+      if (board[this.x + 1][this.y + 1].type == 'none') {
+        move.push([this.x + 1, this.y + 1]);
+      } else if (board[this.x + 1][this.y + 1].player == 3-this.player
+                 && board[this.x + 2][this.y + 2].type == 'none') {
+        capture.push([this.x + 2, this.y + 2]);
+        nextCapture = this.hypothetical(this.x + 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y + 2, 'capture', board))[1];
+        for (let i = 0; i < nextCapture.length; i++) {
+          capture.push([this.x + 2, this.y + 2].concat(nextCapture[i]));
+        }
       }
     }
-    return [move, capture, special];
+    return [move, capture];
   }
 }
 function makeMove(x1, y1, x2, y2, type, board) {
   var boardC = JSON.parse(JSON.stringify(board));
+  boardC[x2][y2] = boardC[x1][y1].hypothetical(x2, y2);
+  boardC[x1][y1] = new Piece(x1, y1, 'none', undefined);
+  if (type == 'capture') {
+    let x3 = (x1+x2)/2;
+    let y3 = (y1+y2)/2;
+    boardC[x3][y3] = new Piece(x3, y3, 'none', undefined);
+  }
+  return boardC;
 }
 function init() {
   var boardElement = document.getElementsByClassName('divTableCell');
