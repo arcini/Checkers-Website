@@ -185,6 +185,7 @@ for (let x = 0; x < 8; x++) {
       yeet.style.width = "80%";
       yeet.style.height = "80%";
       boardElArray[x][y].appendChild(yeet);
+      pieceArray[x][y] = new Piece(x, y, 'normal', 1);
     }
   }
 }
@@ -197,6 +198,7 @@ for (let x = 0; x < 8; x++) {
       yeet.style.width = "80%";
       yeet.style.height = "80%";
       boardElArray[x][y].appendChild(yeet);
+      pieceArray[x][y] = new Piece(x, y, 'normal', 2);
     }
   }
 }
