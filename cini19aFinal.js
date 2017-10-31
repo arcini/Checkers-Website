@@ -15,8 +15,6 @@ class Piece {
   getMoveSquares(board) {
     let move = [];
     let capture = [];
-    let nextCapture;
-    console.log(board);
     if (this.player == 1 || this.type == 'king') {
       if (works(this.x - 1, this.y - 1)) {
         if (board[this.x - 1][this.y - 1].type == 'none') {
@@ -25,10 +23,6 @@ class Piece {
           if (board[this.x - 1][this.y - 1].player == 3-this.player
                    && board[this.x - 2][this.y - 2].type == 'none') {
             capture.push([this.x - 2, this.y - 2]);
-            nextCapture = this.hypothetical(this.x - 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y - 2, 'capture', board))[1];
-            for (let i = 0; i < nextCapture.length; i++) {
-              capture.push([this.x - 2, this.y - 2].concat(nextCapture[i]));
-            }
           }
         }
       }
@@ -39,10 +33,6 @@ class Piece {
           if (board[this.x - 1][this.y + 1].player == 3-this.player
                    && board[this.x - 2][this.y + 2].type == 'none') {
             capture.push([this.x - 2, this.y + 2]);
-            nextCapture = this.hypothetical(this.x - 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y + 2, 'capture', board))[1];
-            for (let i = 0; i < nextCapture.length; i++) {
-              capture.push([this.x - 2, this.y + 2].concat(nextCapture[i]));
-            }
           }
         }
       }
@@ -55,10 +45,6 @@ class Piece {
           if (board[this.x + 1][this.y - 1].player == 3-this.player
                      && board[this.x + 2][this.y - 2].type == 'none') {
             capture.push([this.x + 2, this.y - 2]);
-            nextCapture = this.hypothetical(this.x + 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y - 2, 'capture', board))[1];
-            for (let i = 0; i < nextCapture.length; i++) {
-              capture.push([this.x + 2, this.y - 2].concat(nextCapture[i]));
-            }
           }
         }
       }
@@ -69,15 +55,10 @@ class Piece {
           if (board[this.x + 1][this.y + 1].player == 3-this.player
                    && board[this.x + 2][this.y + 2].type == 'none') {
             capture.push([this.x + 2, this.y + 2]);
-            nextCapture = this.hypothetical(this.x + 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y + 2, 'capture', board))[1];
-            for (let i = 0; i < nextCapture.length; i++) {
-              capture.push([this.x + 2, this.y + 2].concat(nextCapture[i]));
-            }
           }
         }
       }
     }
-    console.log(board);
     return [move, capture];
   }
 }
@@ -251,7 +232,7 @@ function init() {
       winStatement.style.color = "blue";
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
-      console.log("blue wins");
+      console.log("Blue wins");
       pauseFirst();
     } else if (!playerArray.includes(2)) {
       winStatement = document.createElement("h1");
@@ -260,10 +241,9 @@ function init() {
       winStatement.style.color = "red";
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
-      console.log("Blue wins");
+      console.log("Red wins");
       pauseFirst();
     }
-    console.log("checked if someone won");
   }
 }
 
