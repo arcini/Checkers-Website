@@ -15,63 +15,80 @@ class Piece {
   getMoveSquares(board) {
     let move = [];
     let capture = [];
+    let nextCapture;
+    console.log(board);
     if (this.player == 1 || this.type == 'king') {
       if (works(this.x - 1, this.y - 1)) {
         if (board[this.x - 1][this.y - 1].type == 'none') {
           move.push([this.x - 1, this.y - 1]);
-        } /*else if (board[this.x - 1][this.y - 1].player == 3-this.player
+        } else if (works(this.x - 2, this.y - 2)) {
+          if (board[this.x - 1][this.y - 1].player == 3-this.player
                    && board[this.x - 2][this.y - 2].type == 'none') {
-          capture.push([this.x - 2, this.y - 2]);
-          nextCapture = this.hypothetical(this.x - 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y - 2, 'capture', board))[1];
-          for (let i = 0; i < nextCapture.length; i++) {
-            capture.push([this.x - 2, this.y - 2].concat(nextCapture[i]));
+            capture.push([this.x - 2, this.y - 2]);
+            nextCapture = this.hypothetical(this.x - 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y - 2, 'capture', board))[1];
+            for (let i = 0; i < nextCapture.length; i++) {
+              capture.push([this.x - 2, this.y - 2].concat(nextCapture[i]));
+            }
           }
-        }*/
+        }
       }
       if (works(this.x - 1, this.y + 1)) {
         if (board[this.x - 1][this.y + 1].type == 'none') {
           move.push([this.x - 1, this.y + 1]);
-        } /*else if (board[this.x - 1][this.y + 1].player == 3-this.player
+        } else if (works(this.x - 2, this.y + 2)) {
+          if (board[this.x - 1][this.y + 1].player == 3-this.player
                    && board[this.x - 2][this.y + 2].type == 'none') {
-          capture.push([this.x - 2, this.y + 2]);
-          nextCapture = this.hypothetical(this.x - 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y + 2, 'capture', board))[1];
-          for (let i = 0; i < nextCapture.length; i++) {
-            capture.push([this.x - 2, this.y + 2].concat(nextCapture[i]));
+            capture.push([this.x - 2, this.y + 2]);
+            nextCapture = this.hypothetical(this.x - 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x - 2, this.y + 2, 'capture', board))[1];
+            for (let i = 0; i < nextCapture.length; i++) {
+              capture.push([this.x - 2, this.y + 2].concat(nextCapture[i]));
+            }
           }
-        }*/
+        }
       }
     }
     if (this.player == 2 || this.type == 'king') {
       if (works(this.x + 1, this.y - 1)) {
         if (board[this.x + 1][this.y - 1].type == 'none') {
           move.push([this.x + 1, this.y - 1]);
-        } /*else if (board[this.x + 1][this.y - 1].player == 3-this.player
-                   && board[this.x + 2][this.y - 2].type == 'none') {
-          capture.push([this.x + 2, this.y - 2]);
-          nextCapture = this.hypothetical(this.x + 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y - 2, 'capture', board))[1];
-          for (let i = 0; i < nextCapture.length; i++) {
-            capture.push([this.x + 2, this.y - 2].concat(nextCapture[i]));
+        } else if (works(this.x + 2, this.y - 2)) {
+          if (board[this.x + 1][this.y - 1].player == 3-this.player
+                     && board[this.x + 2][this.y - 2].type == 'none') {
+            capture.push([this.x + 2, this.y - 2]);
+            nextCapture = this.hypothetical(this.x + 2, this.y - 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y - 2, 'capture', board))[1];
+            for (let i = 0; i < nextCapture.length; i++) {
+              capture.push([this.x + 2, this.y - 2].concat(nextCapture[i]));
+            }
           }
-        }*/
+        }
       }
       if (works(this.x + 1, this.y + 1)) {
         if (board[this.x + 1][this.y + 1].type == 'none') {
           move.push([this.x + 1, this.y + 1]);
-        } /*else if (board[this.x + 1][this.y + 1].player == 3-this.player
+        } else if (works(this.x + 2, this.y + 2)) {
+          if (board[this.x + 1][this.y + 1].player == 3-this.player
                    && board[this.x + 2][this.y + 2].type == 'none') {
-          capture.push([this.x + 2, this.y + 2]);
-          nextCapture = this.hypothetical(this.x + 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y + 2, 'capture', board))[1];
-          for (let i = 0; i < nextCapture.length; i++) {
-            capture.push([this.x + 2, this.y + 2].concat(nextCapture[i]));
+            capture.push([this.x + 2, this.y + 2]);
+            nextCapture = this.hypothetical(this.x + 2, this.y + 2).getMoveSquares(makeMove(this.x, this.y, this.x + 2, this.y + 2, 'capture', board))[1];
+            for (let i = 0; i < nextCapture.length; i++) {
+              capture.push([this.x + 2, this.y + 2].concat(nextCapture[i]));
+            }
           }
-        }*/
+        }
       }
     }
+    console.log(board);
     return [move, capture];
   }
 }
 function makeMove(x1, y1, x2, y2, type, board) {
-  var boardC = board.slice();
+  var boardC = [];
+  for (let x = 0; x < 8; x++) {
+    boardC.push([]);
+    for (let y = 0; y < 8; y++) {
+      boardC[x].push(new Piece(x, y, board[x][y].type, board[x][y].player));
+    }
+  }
   boardC[x2][y2] = boardC[x1][y1].hypothetical(x2, y2);
   boardC[x1][y1] = new Piece(x1, y1, 'none', undefined);
   if (type == 'capture') {
@@ -98,220 +115,59 @@ function init() {
         boardElArray[x][y].style.backgroundColor = "black";
       }
       boardElArray[x][y].id = '(' + x + ',' + y + ')';
-      if ((x + y)%2 == 1 && x < 3) {
+      if ((x + y)%2 == 1 && x < 1) {
         pieceArray[x][y] = new Piece(x, y, 'normal', 2);
-      } else if ((x + y)%2 == 1 && x >= 5) {
+      } else if ((x + y)%2 == 1 && x >= 7) {
         pieceArray[x][y] = new Piece(x, y, 'normal', 1);
       } else {
         pieceArray[x][y] = new Piece(x, y, 'none', undefined);
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function render() {
-  for (let x = 0; x < 8; x++) {
-    for (let y = 0; y < 8; y++) {
-      while (boardElArray[x][y].hasChildNodes()) {
-        boardElArray[x][y].removeChild(boardElArray[x][y].lastChild);
-      }
-      if (pieceArray[x][y].player == 1) {
-        let yeet = document.createElement("img");
-        yeet.setAttribute("src", "redChecker.png");
-        yeet.style.width = "80%";
-        yeet.style.height = "80%";
-        boardElArray[x][y].appendChild(yeet);
-      } else if (pieceArray[x][y].player == 2) {
-        let yeet = document.createElement("img");
-        yeet.setAttribute("src", "blueChecker.png");
-        yeet.style.width = "80%";
-        yeet.style.height = "80%";
-        boardElArray[x][y].appendChild(yeet);
+  function render() {
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 8; y++) {
+        while (boardElArray[x][y].hasChildNodes()) {
+          boardElArray[x][y].removeChild(boardElArray[x][y].lastChild);
+        }
+        if (pieceArray[x][y].type != 'none') {
+          let yeet = document.createElement("img");
+          if (pieceArray[x][y].player == 1) {
+            if (pieceArray[x][y].type == 'king') {
+              yeet.setAttribute("src", "redKing.png");
+            } else {
+              yeet.setAttribute("src", "redChecker.png");
+            }
+          } else if (pieceArray[x][y].player == 2) {
+            if (pieceArray[x][y].type == 'king') {
+              yeet.setAttribute("src", "blueKing.png");
+            } else {
+              yeet.setAttribute("src", "blueChecker.png");
+            }
+          }
+          yeet.style.width = "80%";
+          yeet.style.height = "80%";
+          boardElArray[x][y].appendChild(yeet);
+        }
       }
     }
   }
-}
-render();
+  render();
+  var isPlayer = 1;
+  var isClicked = [false, 1, 1]; //index 0 tells whether a square is currently in the clicked state, indexes 1 and 2 give it's x and y position
+  var lastBGC;
+  var multi = false;
 
+  for (let x = 0; x < boardElArray.length; x++) {
+    for (let y = 0; y < boardElArray[x].length; y++) {
+      let d = boardElArray[x][y];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var isPlayer = 1;
-var isClicked = [false, 1, 1]; //index 0 tells whether a square is currently in the clicked state, indexes 1 and 2 give it's x and y position
-var lastBGC;
-
-for (let x = 0; x < boardElArray.length; x++) {
-  for (let y = 0; y < boardElArray[x].length; y++) {
-    let d = boardElArray[x][y];
-
-    d.addEventListener("click", function tempFunc() {
-      clickedSquare(x,y);
-    });
-  }
-}
-function clickedSquare(x, y) {
-  for (let x1 = 0; x1 < 8; x1++) {
-    for (let y1 = 0; y1 < 8; y1++) {
-      if ((x1 + y1) % 2 == 1 && x1 != x && y1 != y) {
-        boardElArray[x1][y1].style.backgroundColor = "black";
-      }
+      d.addEventListener("click", function tempFunc() {
+        clickedSquare(x,y);
+      });
     }
   }
-  if (pieceArray[x][y].player != undefined) {
-    if (pieceArray[x][y].player == isPlayer) {
-      if (isClicked[0]) {
-        boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = lastBGC;
-      }
-      let moveArray = pieceArray[x][y].getMoveSquares(pieceArray)[0];
-      for (i = 0; i < moveArray.length; i++) {
-        boardElArray[moveArray[i][0]][moveArray[i][1]].style.backgroundColor = "yellow";
-      }
-      lastBGC = boardElArray[x][y].style.backgroundColor;
-      boardElArray[x][y].style.backgroundColor = "green";
-      isClicked = [true, x, y]; //memory for the state of the clicked square
-    }
-  } else if (boardElArray[x][y].style.backgroundColor == 'yellow') {
-    pieceArray = makeMove(isClicked[1], isClicked[2], x, y, 'move', pieceArray);
-    isPlayer = 3 - isPlayer;
-    render();
+  function resetColors() {
     for (let x1 = 0; x1 < 8; x1++) {
       for (let y1 = 0; y1 < 8; y1++) {
         if ((x1 + y1) % 2 == 1) {
@@ -320,108 +176,184 @@ function clickedSquare(x, y) {
       }
     }
   }
+  function clickedSquare(x, y) {
+    for (let x1 = 0; x1 < 8; x1++) {
+      for (let y1 = 0; y1 < 8; y1++) {
+        if ((x1 + y1) % 2 == 1 && !(x1 == x && y1 == y)) {
+          boardElArray[x1][y1].style.backgroundColor = "black";
+        }
+      }
+    }
+    if (pieceArray[x][y].player != undefined && !(multi)) {
+      if (pieceArray[x][y].player == isPlayer) {
+        if (isClicked[0]) {
+          boardElArray[isClicked[1]][isClicked[2]].style.backgroundColor = lastBGC;
+        }
+        let moveArray = pieceArray[x][y].getMoveSquares(pieceArray)[0];
+        let captureArray = pieceArray[x][y].getMoveSquares(pieceArray)[1];
+        for (i = 0; i < moveArray.length; i++) {
+          boardElArray[moveArray[i][0]][moveArray[i][1]].style.backgroundColor = "yellow";
+        }
+        for (i = 0; i < captureArray.length; i++) {
+          boardElArray[captureArray[i][0]][captureArray[i][1]].style.backgroundColor = "orange";
+        }
+        lastBGC = boardElArray[x][y].style.backgroundColor;
+        boardElArray[x][y].style.backgroundColor = "green";
+        isClicked = [true, x, y]; //memory for the state of the clicked square
+      }
+    } else if (boardElArray[x][y].style.backgroundColor == 'yellow') {
+      pieceArray = makeMove(isClicked[1], isClicked[2], x, y, 'move', pieceArray);
+      isPlayer = 3 - isPlayer;
+      render();
+      resetColors();
+    } else if (boardElArray[x][y].style.backgroundColor == 'orange') {
+      pieceArray = makeMove(isClicked[1], isClicked[2], x, y, 'capture', pieceArray);
+      let captureArray = pieceArray[x][y].getMoveSquares(pieceArray)[1];
+      render();
+      resetColors();
+      if (captureArray.length == 0) {
+        isPlayer = 3 - isPlayer;
+        multi = false;
+      } else {
+        for (i = 0; i < captureArray.length; i++) {
+          boardElArray[captureArray[i][0]][captureArray[i][1]].style.backgroundColor = "orange";
+        }
+        boardElArray[x][y].style.backgroundColor = "green";
+        isClicked = [true, x, y];
+        multi = true;
+      }
+    } else if (multi) {
+      isPlayer = 3 - isPlayer;
+      multi = false;
+      for (let x1 = 0; x1 < 8; x1++) {
+        for (let y1 = 0; y1 < 8; y1++) {
+          if ((x1 + y1) % 2 == 1) {
+            boardElArray[x1][y1].style.backgroundColor = "black";
+          }
+        }
+      }
+    }
+    checkWin();
+  }
+
+  function checkWin() {
+    let playerArray = [];
+    for (let x = 0; x < 8; x++) {
+      for (let y = 0; y < 8; y++) {
+        playerArray.push(pieceArray[x][y].player)
+      }
+    }
+    var winStatement;
+    if (!playerArray.includes(1)) {
+      winStatement = document.createElement("h1");
+      let node = document.createTextNode("Blue wins!!");
+      winStatement.appendChild(node);
+      winStatement.style.color = "blue";
+      winStatement.id = "winStatement";
+      document.body.appendChild(winStatement);
+      console.log("blue wins");
+      setTimeout(resetButton(), 3000);
+    } else if (!playerArray.includes(2)) {
+      winStatement = document.createElement("h1");
+      let node = document.createTextNode("Red wins!!");
+      winStatement.appendChild(node);
+      winStatement.style.color = "red";
+      winStatement.id = "winStatement";
+      document.body.appendChild(winStatement);
+      console.log("Blue wins");
+      setTimeout(function(){ resetButton(); }, 3000);
+    }
+    console.log("done");
+  }
 }
-console.log('a');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  function resetButton() {
+    console.log("resetting...");
+    /*document.body.innerHTML = `<h1>Checkers</h1><div>
+        <div class="divTable">
+          <div class="divTableBody">
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+            <div class="divTableRow">
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+              <div class="divTableCell"></div>
+          </div>
+        </div>
+      </div>
+    </div>`;*/
+    document.body.removeChild(document.getElementById("winStatement"));
+    init();
 }
