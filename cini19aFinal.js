@@ -115,9 +115,9 @@ function init() {
         boardElArray[x][y].style.backgroundColor = "black";
       }
       boardElArray[x][y].id = '(' + x + ',' + y + ')';
-      if ((x + y)%2 == 1 && x < 1) {
+      if ((x + y)%2 == 1 && x < 3) {
         pieceArray[x][y] = new Piece(x, y, 'normal', 2);
-      } else if ((x + y)%2 == 1 && x >= 7) {
+      } else if ((x + y)%2 == 1 && x >= 5) {
         pieceArray[x][y] = new Piece(x, y, 'normal', 1);
       } else {
         pieceArray[x][y] = new Piece(x, y, 'none', undefined);
@@ -252,7 +252,7 @@ function init() {
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
       console.log("blue wins");
-      setTimeout(resetButton(), 3000);
+      pauseFirst();
     } else if (!playerArray.includes(2)) {
       winStatement = document.createElement("h1");
       let node = document.createTextNode("Red wins!!");
@@ -261,99 +261,17 @@ function init() {
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
       console.log("Blue wins");
-      setTimeout(function(){ resetButton(); }, 3000);
+      pauseFirst();
     }
-    console.log("done");
+    console.log("checked if someone won");
   }
 }
-  function resetButton() {
-    console.log("resetting...");
-    /*document.body.innerHTML = `<h1>Checkers</h1><div>
-        <div class="divTable">
-          <div class="divTableBody">
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-            <div class="divTableRow">
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-              <div class="divTableCell"></div>
-          </div>
-        </div>
-      </div>
-    </div>`;*/
-    document.body.removeChild(document.getElementById("winStatement"));
-    init();
+
+function pauseFirst() {
+  let wtf = setTimeout(function(){ resetButton(); }, 3000);
+}
+
+function resetButton() {
+  console.log("resetting...");
+  location.reload();
 }
