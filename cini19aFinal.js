@@ -238,7 +238,7 @@ function init() {
       winStatement = document.createElement("h1");
       let node = document.createTextNode("green wins!!");
       winStatement.appendChild(node);
-      winStatement.style.color = "green";
+      winStatement.style.color = "lime";
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
       console.log("green wins");
