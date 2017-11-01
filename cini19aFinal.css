@@ -1,8 +1,11 @@
-
+body {
+  background-color: rgba(102,21,163,0.9);
+}
 
 p, h1, h2 {
   text-align: center;
   margin: 0.5em auto;
+  color: darkorange;
 }
 
 .divTable {

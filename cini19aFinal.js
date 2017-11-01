@@ -115,15 +115,15 @@ function init() {
           let yeet = document.createElement("img");
           if (pieceArray[x][y].player == 1) {
             if (pieceArray[x][y].type == 'king') {
-              yeet.setAttribute("src", "redKing.png");
+              yeet.setAttribute("src", "greenKing.png");
             } else {
-              yeet.setAttribute("src", "redChecker.png");
+              yeet.setAttribute("src", "greenChecker.png");
             }
           } else if (pieceArray[x][y].player == 2) {
             if (pieceArray[x][y].type == 'king') {
-              yeet.setAttribute("src", "blueKing.png");
+              yeet.setAttribute("src", "orangeKing.png");
             } else {
-              yeet.setAttribute("src", "blueChecker.png");
+              yeet.setAttribute("src", "orangeChecker.png");
             }
           }
           yeet.style.width = "80%";
@@ -227,21 +227,21 @@ function init() {
     var winStatement;
     if (!playerArray.includes(1)) {
       winStatement = document.createElement("h1");
-      let node = document.createTextNode("Blue wins!!");
+      let node = document.createTextNode("orange wins!!");
       winStatement.appendChild(node);
-      winStatement.style.color = "blue";
+      winStatement.style.color = "orange";
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
-      console.log("Blue wins");
+      console.log("orange wins");
       pauseFirst();
     } else if (!playerArray.includes(2)) {
       winStatement = document.createElement("h1");
-      let node = document.createTextNode("Red wins!!");
+      let node = document.createTextNode("green wins!!");
       winStatement.appendChild(node);
-      winStatement.style.color = "red";
+      winStatement.style.color = "green";
       winStatement.id = "winStatement";
       document.body.appendChild(winStatement);
-      console.log("Red wins");
+      console.log("green wins");
       pauseFirst();
     }
   }
